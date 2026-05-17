@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zonlik Monitor — системный монитор для Linux</title>
+    <title>Zonlik Fabric — компания и продукты</title>
     <style>
         * {
             margin: 0;
@@ -33,12 +33,13 @@
         }
         h1 {
             color: #bb86fc;
-            font-size: 42px;
+            font-size: 48px;
             margin: 15px 0 10px;
+            letter-spacing: 3px;
         }
-        .version {
+        .subtitle {
             color: #03dac6;
-            font-size: 14px;
+            font-size: 16px;
         }
         .badge {
             display: inline-block;
@@ -48,32 +49,74 @@
             font-size: 12px;
             margin: 5px;
         }
-        .description {
+        .company-section {
             background-color: #1a1a2a;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             margin: 30px 0;
             text-align: center;
         }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-        .feature {
-            background-color: #1a1a2a;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 3px solid #bb86fc;
-        }
-        .feature h3 {
+        .company-section h2 {
             color: #bb86fc;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
         }
-        .download {
-            text-align: center;
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .product-card {
+            background-color: #1a1a2a;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            border-color: #bb86fc;
+            transform: translateY(-5px);
+        }
+        .product-card h3 {
+            color: #bb86fc;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .product-card p {
+            font-size: 14px;
+            color: #aaa;
+        }
+        .product-detail {
+            background-color: #1a1a2a;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            display: none;
+            border-left: 4px solid #bb86fc;
+        }
+        .product-detail.active {
+            display: block;
+        }
+        .product-detail h2 {
+            color: #bb86fc;
+            margin-bottom: 20px;
+        }
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .features-list li {
+            margin-left: 20px;
+        }
+        .download-buttons {
+            margin: 30px 0;
+            text-align: center;
         }
         .btn {
             background-color: #bb86fc;
@@ -86,6 +129,8 @@
             margin: 10px;
             font-family: monospace;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
         .btn:hover {
             background-color: #03dac6;
@@ -103,9 +148,6 @@
             margin: 20px 0;
             font-size: 13px;
         }
-        .code code {
-            font-family: monospace;
-        }
         footer {
             text-align: center;
             margin-top: 50px;
@@ -117,10 +159,6 @@
         a {
             color: #03dac6;
         }
-        hr {
-            border-color: #2a2a3a;
-            margin: 20px 0;
-        }
     </style>
 </head>
 <body>
@@ -129,61 +167,85 @@
             <div class="icon">
                 <img src="icon.png" alt="Zonlik Fabric">
             </div>
-            <h1>ZONLIK MONITOR</h1>
-            <div class="version">Системный монитор для Linux | v1.44</div>
-            <p>Лёгкий, быстрый, информативный</p>
+            <h1>ZONLIK FABRIC</h1>
+            <div class="subtitle">Инструменты для системного администрирования</div>
             <div>
+                <span class="badge">🔧 Open Source</span>
                 <span class="badge">🐧 Linux</span>
-                <span class="badge">⚡ Низкое потребление</span>
-                <span class="badge">📊 Графики</span>
-                <span class="badge">🔋 Мониторинг батареи</span>
-                <span class="badge">💾 SMART диски</span>
-                <span class="badge">🎮 nvidia-smi</span>
+                <span class="badge">⚡ Оптимизация</span>
+                <span class="badge">🔒 Безопасно</span>
             </div>
         </div>
 
-        <div class="description">
-            <strong>Zonlik Monitor</strong> — создан для старых ноутбуков и слабых ПК.
-            Помогает понять, что именно тормозит систему: CPU, RAM, диск или перегрев.
+        <div class="company-section">
+            <h2>О компании</h2>
+            <p><strong>Zonlik Fabric</strong> — это независимая разработка инструментов для системного администрирования и мониторинга.<br>
+            Мы создаём лёгкие, быстрые и информативные программы для Linux, которые помогают пользователям старых и слабых ПК.<br>
+            Наша цель — дать каждому возможность контролировать своё железо без лишних затрат ресурсов.</p>
         </div>
 
-        <div class="features">
-            <div class="feature"><h3>📊 Мониторинг</h3>Графики CPU, RAM, GPU, диски, сеть. Кнопки вкл/выкл под каждым графиком.</div>
-            <div class="feature"><h3>🔄 Процессы</h3>Список всех процессов. Убийство выбранного. Топ-5 жирных процессов.</div>
-            <div class="feature"><h3>💻 Процессор</h3>Модель, ядра, частота, температура, флаги SSE/AVX/AVX-512.</div>
-            <div class="feature"><h3>💾 Оперативная память</h3>Объём, загрузка, SWAP. Детали через dmidecode.</div>
-            <div class="feature"><h3>🎮 Видеокарта</h3>nvidia-smi: модель, драйвер, температура, память.</div>
-            <div class="feature"><h3>🔋 Батарея</h3>Заряд, износ, калибровка, график истории.</div>
-            <div class="feature"><h3>💿 Диски</h3>Список дисков, SMART, температура, разделы.</div>
-            <div class="feature"><h3>📀 USB</h3>Список устройств, диагностика, форматирование.</div>
+        <div class="products">
+            <div class="product-card" onclick="showProduct('monitor')">
+                <h3>📊 Zonlik Monitor</h3>
+                <p>Системный монитор для Linux</p>
+            </div>
         </div>
 
-        <div class="download">
-            <a href="Zonlik-Fabric.zip" class="btn">📥 Скачать ZIP (всё в одном файле)</a>
-            <a href="zonlik_monitor_full.py" class="btn btn-secondary">📄 Скачать только скрипт</a>
-        </div>
+        <div id="product-monitor" class="product-detail">
+            <h2>📊 Zonlik Monitor</h2>
+            <p><strong>Версия:</strong> 2.0 | <strong>Платформа:</strong> Linux | <strong>Лицензия:</strong> Open Source</p>
+            <p>Лёгкий и быстрый системный монитор, созданный специально для старых ноутбуков и слабых ПК. Позволяет отслеживать загрузку системы, находить узкие места и оптимизировать работу.</p>
+            
+            <h3>🔧 Возможности</h3>
+            <div class="features-list">
+                <div class="feature"><h3>📊 Мониторинг</h3>Графики CPU, RAM, GPU, диски, сеть. Кнопки вкл/выкл под каждым графиком.</div>
+                <div class="feature"><h3>🔄 Процессы</h3>Список всех процессов. Убийство выбранного. Топ-5 жирных процессов.</div>
+                <div class="feature"><h3>💻 Процессор</h3>Модель, ядра, частота, температура, флаги SSE/AVX/AVX-512.</div>
+                <div class="feature"><h3>💾 Оперативная память</h3>Объём, загрузка, SWAP. Детали через dmidecode.</div>
+                <div class="feature"><h3>🎮 Видеокарта</h3>nvidia-smi: модель, драйвер, температура, память.</div>
+                <div class="feature"><h3>🔋 Батарея</h3>Заряд, износ, калибровка, график истории.</div>
+                <div class="feature"><h3>💿 Диски</h3>Список дисков, SMART, температура, разделы.</div>
+                <div class="feature"><h3>📀 USB</h3>Список устройств, диагностика, форматирование.</div>
+            </div>
 
-        <div class="code">
-            <strong>🚀 Быстрый запуск (после распаковки ZIP):</strong><br>
-            <code>cd Zonlik-Fabric && python3 zonlik_monitor_full.py</code>
-        </div>
+            <div class="download-buttons">
+                <a href="Zonlik-Fabric.zip" class="btn">📥 Скачать ZIP (все файлы)</a>
+                <a href="zonlik_monitor_full.py" class="btn btn-secondary">📄 Скачать только скрипт</a>
+            </div>
 
-        <div class="code">
-            <strong>🌐 Запуск через curl (без скачивания):</strong><br>
-            <code>python3 &lt;(curl -s https://zonlik.github.io/Zonlik-Fabric-Site/zonlik_monitor_full.py)</code>
-        </div>
+            <div class="code">
+                <strong>🚀 Быстрый запуск (после распаковки ZIP):</strong><br>
+                <code>cd Zonlik-Fabric && python3 zonlik_monitor_full.py</code>
+            </div>
 
-        <div class="code">
-            <strong>📦 Требования:</strong><br>
-            • Linux (Ubuntu, Mint, Debian, Fedora, Arch)<br>
-            • Python 3.8+<br>
-            • Установка зависимостей: <code>pip install psutil</code>
+            <div class="code">
+                <strong>🌐 Запуск через curl (без скачивания):</strong><br>
+                <code>python3 &lt;(curl -s https://zonlik.github.io/Zonlik-Fabric-Site/zonlik_monitor_full.py)</code>
+            </div>
+
+            <div class="code">
+                <strong>📦 Требования:</strong><br>
+                • Linux (Ubuntu, Mint, Debian, Fedora, Arch)<br>
+                • Python 3.8+<br>
+                • Установка зависимостей: <code>pip install psutil</code>
+            </div>
         </div>
 
         <footer>
-            🛠️ Создатель: Баринов Кирилл Сергеевич <br>
-            📄 Open Source | Свободно для скачивания и использования
+            🛠️ Разработчик: Баринов Кирилл Сергеевич (Zonlik)<br>
+            📄 Open Source | Свободно для скачивания и использования<br>
+            📧 Контакты: GitHub / Zonlik
         </footer>
     </div>
+
+    <script>
+        function showProduct(product) {
+            document.getElementById('product-monitor').classList.add('active');
+        }
+        // Показываем монитор по умолчанию при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            showProduct('monitor');
+        });
+    </script>
 </body>
 </html>
