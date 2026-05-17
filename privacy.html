@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности — Zonlik Fabric</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 100%);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', 'Courier New', monospace;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid rgba(187, 134, 252, 0.3);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #bb86fc;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            color: #03dac6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .back:hover {
+            color: #bb86fc;
+            transform: translateX(-5px);
+        }
+        h2 {
+            color: #03dac6;
+            margin: 30px 0 15px;
+            font-size: 24px;
+        }
+        p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        .code {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(187, 134, 252, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(42, 42, 58, 0.5);
+            font-size: 12px;
+            color: #888;
+        }
+        a {
+            color: #03dac6;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #bb86fc;
+        }
+        ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Политика конфиденциальности</h1>
+            <p>Zonlik Fabric | Zonlik Monitor v1.44</p>
+        </div>
+
+        <h2>1. Общие положения</h2>
+        <p>Настоящая политика конфиденциальности описывает, как программа <strong>Zonlik Monitor</strong> обрабатывает и защищает ваши данные. Мы уважаем вашу конфиденциальность и стремимся к максимальной прозрачности.</p>
+
+        <h2>2. Какие данные собираются</h2>
+        <p><strong>Zonlik Monitor НЕ собирает, НЕ хранит и НЕ передаёт какие-либо личные данные пользователей.</strong> Все данные, отображаемые программой (загрузка CPU, RAM, дисков и т.д.), получаются напрямую из системных файлов вашего компьютера и не покидают его пределы.</p>
+        <p>Программа не имеет сетевых функций для передачи данных. Единственное сетевое взаимодействие возможно только если вы сами используете функции проверки интернета (например, тест скорости), но эти данные не сохраняются и не передаются разработчику.</p>
+
+        <h2>3. Хранение данных</h2>
+        <p>Программа сохраняет только ваши настройки (тема, интервал обновления, выбранные графики) в локальный файл <code>~/.zonlik_settings.json</code>. Этот файл хранится на вашем компьютере и не передаётся внешним серверам.</p>
+        <p>История износа батареи сохраняется в файл <code>~/.zonlik_battery_history.json</code>. Эти данные нужны только для отображения графика и остаются на вашем устройстве.</p>
+
+        <h2>4. Передача данных третьим лицам</h2>
+        <p>Никакие данные не передаются третьим лицам, поскольку программа не собирает персональную информацию. Программа не использует облачные сервисы, не отправляет аналитику и не имеет трекеров.</p>
+
+        <h2>5. Безопасность</h2>
+        <p>Так как программа не собирает данные, риски утечки информации отсутствуют. Все операции выполняются локально на вашем компьютере.</p>
+
+        <h2>6. Изменения в политике</h2>
+        <p>Мы можем обновлять эту политику при добавлении новых функций. Все изменения будут публиковаться на этой странице. Актуальная версия программы: 1.44.</p>
+
+        <h2>7. Контакты</h2>
+        <p>По вопросам конфиденциальности вы можете связаться через GitHub:</p>
+        <ul>
+            <li>🔗 <a href="https://github.com/Zonlik" target="_blank">github.com/Zonlik</a></li>
+            <li>📧 Создатель: Баринов Кирилл Сергеевич</li>
+        </ul>
+
+        <a href="index.html" class="back">← Вернуться на главную</a>
+
+        <footer>
+            Zonlik Fabric — Open Source проект<br>
+            Актуальная версия программы: 1.44<br>
+            Лицензия: MIT
+        </footer>
+    </div>
+</body>
+</html>
