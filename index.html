@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonlik Fabric — системный монитор для Linux</title>
+    <style>
+        body {
+            background-color: #0a0a0f;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #bb86fc;
+            padding-bottom: 20px;
+        }
+        .icon {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #bb86fc;
+            font-size: 36px;
+            margin: 10px 0;
+        }
+        .version {
+            color: #03dac6;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #1a1a2a;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 5px;
+        }
+        .description {
+            background-color: #1a1a2a;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .feature {
+            background-color: #1a1a2a;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #bb86fc;
+        }
+        .download {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .btn {
+            background-color: #bb86fc;
+            color: #0a0a0f;
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px;
+            font-family: monospace;
+        }
+        .btn:hover {
+            background-color: #03dac6;
+        }
+        .code {
+            background-color: #0a0a0f;
+            border: 1px solid #bb86fc;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #888;
+        }
+        a {
+            color: #03dac6;
+        }
+        hr {
+            border-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">
+                <img src="icon.png" width="80" height="80" alt="Zonlik Fabric">
+            </div>
+            <h1>ZONLIK FABRIC</h1>
+            <div class="version">Системный монитор для Linux | v2.0</div>
+            <p>Лёгкий, быстрый, информативный</p>
+            <div>
+                <span class="badge">🐧 Linux</span>
+                <span class="badge">⚡ Низкое потребление</span>
+                <span class="badge">📊 Графики</span>
+                <span class="badge">🔋 Мониторинг батареи</span>
+            </div>
+        </div>
+
+        <div class="description">
+            <strong>Zonlik Fabric</strong> — создан для старых ноутбуков и слабых ПК.
+            Помогает понять, что именно тормозит систему: CPU, RAM, диск или перегрев.
+        </div>
+
+        <div class="features">
+            <div class="feature">📊 <strong>Мониторинг</strong><br>CPU, RAM, GPU, диски, сеть — графики и цифры</div>
+            <div class="feature">🔋 <strong>Батарея</strong><br>Заряд, износ, калибровка, график истории</div>
+            <div class="feature">💾 <strong>Диски</strong><br>SMART, температура, скорость, разделы</div>
+            <div class="feature">🎮 <strong>Видеокарта</strong><br>nvidia-smi, температура, память, частота</div>
+            <div class="feature">🔄 <strong>Процессы</strong><br>Список, убийство, топ-5 жирных процессов</div>
+            <div class="feature">⚙️ <strong>Настройки</strong><br>Темы, стили графиков, автоочистка RAM</div>
+            <div class="feature">💻 <strong>Процессор</strong><br>Модель, частота, температура, флаги</div>
+            <div class="feature">📀 <strong>USB</strong><br>Список устройств, диагностика</div>
+        </div>
+
+        <div class="download">
+            <a href="zonlik_monitor_full.py" class="btn">📥 Скачать Zonlik Fabric</a>
+        </div>
+
+        <div class="code">
+            <strong>🚀 Быстрый запуск (одной командой):</strong><br>
+            <code>python3 zonlik_monitor_full.py</code>
+        </div>
+
+        <div class="code">
+            <strong>🌐 Запуск через curl (без скачивания):</strong><br>
+            <code>python3 &lt;(curl -s https://zonlik.github.io/Zonlik-Fabric-Site/zonlik_monitor_full.py)</code>
+        </div>
+
+        <div class="code">
+            <strong>📦 Требования:</strong><br>
+            • Linux (Ubuntu, Mint, Debian, Fedora, Arch)<br>
+            • Python 3.8+<br>
+            • Установка зависимостей: <code>pip install psutil</code>
+        </div>
+
+        <div class="code">
+            <strong>🖼️ Иконка на рабочий стол:</strong><br>
+            <code>cat > ~/Рабочий\ стол/zonlik-fabric.desktop << EOF<br>
+[Desktop Entry]<br>
+Type=Application<br>
+Name=Zonlik Fabric<br>
+Exec=python3 /home/kirill/Zonlik-Monitor/zonlik_monitor_full.py<br>
+Icon=/home/kirill/Zonlik-Monitor/icon.png<br>
+Terminal=false<br>
+Categories=System;<br>
+EOF</code>
+        </div>
+
+        <footer>
+            🛠️ Создатель: Кирилл (Zonlik)<br>
+            📄 Open Source | Свободно для скачивания и использования
+        </footer>
+    </div>
+</body>
+</html>
