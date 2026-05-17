@@ -1,25 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonlik Fabric — системный монитор для Linux</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0a0a0f;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #bb86fc;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+        .icon img {
+            width: 96px;
+            height: 96px;
+        }
+        h1 {
+            color: #bb86fc;
+            font-size: 42px;
+            margin: 15px 0 10px;
+        }
+        .version {
+            color: #03dac6;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #1a1a2a;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 5px;
+        }
+        .description {
+            background-color: #1a1a2a;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .feature {
+            background-color: #1a1a2a;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #bb86fc;
+        }
+        .feature h3 {
+            color: #bb86fc;
+            margin-bottom: 8px;
+        }
+        .download {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .btn {
+            background-color: #bb86fc;
+            color: #0a0a0f;
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: bold;
             border-radius: 8px;
             display: inline-block;
             margin: 10px;
             font-family: monospace;
+            transition: 0.3s;
         }
         .btn:hover {
             background-color: #03dac6;
+        }
+        .btn-secondary {
+            background-color: #2a2a3a;
+            color: #e0e0e0;
         }
         .code {
             background-color: #0a0a0f;
             border: 1px solid #bb86fc;
             padding: 15px;
             border-radius: 8px;
-            font-family: monospace;
             overflow-x: auto;
             margin: 20px 0;
+            font-size: 13px;
+        }
+        .code code {
+            font-family: monospace;
         }
         footer {
             text-align: center;
             margin-top: 50px;
             padding-top: 20px;
-            border-top: 1px solid #333;
+            border-top: 1px solid #2a2a3a;
             font-size: 12px;
             color: #888;
         }
@@ -27,7 +118,8 @@
             color: #03dac6;
         }
         hr {
-            border-color: #333;
+            border-color: #2a2a3a;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -35,16 +127,18 @@
     <div class="container">
         <div class="header">
             <div class="icon">
-                <img src="icon.png" width="80" height="80" alt="Zonlik Fabric">
+                <img src="icon.png" alt="Zonlik Fabric">
             </div>
-            <h1>ZONLIK MONITOR</h1>
-            <div class="version">Системный монитор для Linux | v1.44</div>
+            <h1>ZONLIK FABRIC</h1>
+            <div class="version">Системный монитор для Linux | v2.0</div>
             <p>Лёгкий, быстрый, информативный</p>
             <div>
                 <span class="badge">🐧 Linux</span>
                 <span class="badge">⚡ Низкое потребление</span>
                 <span class="badge">📊 Графики</span>
                 <span class="badge">🔋 Мониторинг батареи</span>
+                <span class="badge">💾 SMART диски</span>
+                <span class="badge">🎮 nvidia-smi</span>
             </div>
         </div>
 
@@ -54,23 +148,24 @@
         </div>
 
         <div class="features">
-            <div class="feature">📊 <strong>Мониторинг</strong><br>CPU, RAM, GPU, диски, сеть — графики и цифры</div>
-            <div class="feature">🔋 <strong>Батарея</strong><br>Заряд, износ, калибровка, график истории</div>
-            <div class="feature">💾 <strong>Диски</strong><br>SMART, температура, скорость, разделы</div>
-            <div class="feature">🎮 <strong>Видеокарта</strong><br>nvidia-smi, температура, память, частота</div>
-            <div class="feature">🔄 <strong>Процессы</strong><br>Список, убийство, топ-5 жирных процессов</div>
-            <div class="feature">⚙️ <strong>Настройки</strong><br>Темы, стили графиков, автоочистка RAM</div>
-            <div class="feature">💻 <strong>Процессор</strong><br>Модель, частота, температура, флаги</div>
-            <div class="feature">📀 <strong>USB</strong><br>Список устройств, диагностика</div>
+            <div class="feature"><h3>📊 Мониторинг</h3>Графики CPU, RAM, GPU, диски, сеть. Кнопки вкл/выкл под каждым графиком.</div>
+            <div class="feature"><h3>🔄 Процессы</h3>Список всех процессов. Убийство выбранного. Топ-5 жирных процессов.</div>
+            <div class="feature"><h3>💻 Процессор</h3>Модель, ядра, частота, температура, флаги SSE/AVX/AVX-512.</div>
+            <div class="feature"><h3>💾 Оперативная память</h3>Объём, загрузка, SWAP. Детали через dmidecode.</div>
+            <div class="feature"><h3>🎮 Видеокарта</h3>nvidia-smi: модель, драйвер, температура, память.</div>
+            <div class="feature"><h3>🔋 Батарея</h3>Заряд, износ, калибровка, график истории.</div>
+            <div class="feature"><h3>💿 Диски</h3>Список дисков, SMART, температура, разделы.</div>
+            <div class="feature"><h3>📀 USB</h3>Список устройств, диагностика, форматирование.</div>
         </div>
 
         <div class="download">
-            <a href="zonlik_monitor_full.py" class="btn">📥 Скачать Zonlik Fabric</a>
+            <a href="Zonlik-Fabric.zip" class="btn">📥 Скачать ZIP (всё в одном файле)</a>
+            <a href="zonlik_monitor_full.py" class="btn btn-secondary">📄 Скачать только скрипт</a>
         </div>
 
         <div class="code">
-            <strong>🚀 Быстрый запуск (одной командой):</strong><br>
-            <code>python3 zonlik_monitor_full.py</code>
+            <strong>🚀 Быстрый запуск (после распаковки ZIP):</strong><br>
+            <code>cd Zonlik-Fabric && python3 zonlik_monitor_full.py</code>
         </div>
 
         <div class="code">
@@ -85,21 +180,8 @@
             • Установка зависимостей: <code>pip install psutil</code>
         </div>
 
-        <div class="code">
-            <strong>🖼️ Иконка на рабочий стол:</strong><br>
-            <code>cat > ~/Рабочий\ стол/zonlik-fabric.desktop << EOF<br>
-[Desktop Entry]<br>
-Type=Application<br>
-Name=Zonlik Fabric<br>
-Exec=python3 /home/kirill/Zonlik-Monitor/zonlik_monitor_full.py<br>
-Icon=/home/kirill/Zonlik-Monitor/icon.png<br>
-Terminal=false<br>
-Categories=System;<br>
-EOF</code>
-        </div>
-
         <footer>
-            🛠️ Создатель: Баринов Кирилл Сергеевич (Zonlik)<br>
+            🛠️ Создатель: Кирилл (Zonlik)<br>
             📄 Open Source | Свободно для скачивания и использования
         </footer>
     </div>
