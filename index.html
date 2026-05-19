@@ -32,10 +32,6 @@
             border-color: #bb86fc;
             color: #1a1a2a;
         }
-        body.light .theme-selector button {
-            background: #e0e0e8;
-            color: #1a1a2a;
-        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -49,37 +45,6 @@
             0% { text-shadow: 0 0 5px #bb86fc; }
             50% { text-shadow: 0 0 20px #bb86fc, 0 0 30px #03dac6; }
             100% { text-shadow: 0 0 5px #bb86fc; }
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #bb86fc;
-            color: #0a0a0f;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            border: none;
-        }
-        .scroll-top:hover {
-            background: #03dac6;
-            transform: scale(1.1);
         }
         .header {
             text-align: center;
@@ -131,29 +96,6 @@
             background: rgba(187, 134, 252, 0.2);
             transform: scale(1.05);
         }
-        .theme-selector {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: rgba(26, 26, 42, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 8px 15px;
-            border-radius: 30px;
-            border: 1px solid rgba(187, 134, 252, 0.3);
-            display: flex;
-            gap: 10px;
-            z-index: 100;
-        }
-        .theme-selector button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 5px;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-        .theme-selector button:hover { transform: scale(1.2); }
         .company-section, .screenshots-section, .updates-section, .faq-section, .install-steps {
             background: rgba(26, 26, 42, 0.6);
             backdrop-filter: blur(10px);
@@ -293,15 +235,6 @@
             font-size: 14px;
             color: #03dac6;
         }
-        .qr-code {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .qr-code canvas {
-            background: white;
-            padding: 10px;
-            border-radius: 12px;
-        }
         footer {
             text-align: center;
             margin-top: 50px;
@@ -311,10 +244,18 @@
         }
         a { color: #03dac6; text-decoration: none; }
         a:hover { color: #bb86fc; }
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            padding-left: 20px;
+            color: #aaa;
+        }
+        .faq-answer.show {
+            display: block;
+        }
         @media (max-width: 768px) {
             .theme-switch, .lang-switch { top: 10px; right: 10px; padding: 4px 10px; font-size: 12px; }
             .lang-switch { right: 80px; }
-            .theme-selector { top: 60px; right: 10px; }
             h1 { font-size: 32px; }
             .container { padding: 20px; }
         }
@@ -323,13 +264,6 @@
 <body>
     <div class="theme-switch" onclick="toggleTheme()">🌓 Тема</div>
     <div class="lang-switch" onclick="toggleLang()">🌐 EN/RU</div>
-    <div class="theme-selector">
-        <button onclick="setTheme('dark')" style="background:#0a0a0f; color:white;">🌙</button>
-        <button onclick="setTheme('light')" style="background:#f0f0f5; color:black;">☀️</button>
-        <button onclick="setTheme('blue')" style="background:#0a1a2a; color:#3399ff;">🔵</button>
-        <button onclick="setTheme('green')" style="background:#0a1a0a; color:#33cc33;">🟢</button>
-    </div>
-    <button class="scroll-top" onclick="scrollToTop()">↑</button>
 
     <div class="container">
         <div class="header">
@@ -341,19 +275,19 @@
                 <span class="badge">🐧 Linux</span>
                 <span class="badge">⚡ Оптимизация</span>
                 <span class="badge">🔒 Безопасно</span>
-                <span class="badge" id="version-badge">📦 v1.44</span>
+                <span class="badge">📦 v1.44</span>
                 <span class="badge">📄 MIT</span>
                 <span class="badge">⭐ GitHub</span>
             </div>
             <div class="version-info" id="download-counter">📥 Загрузок: ...</div>
         </div>
 
-        <div class="company-section fade-in" id="company">
+        <div class="company-section" id="company">
             <h2 id="company-title">✨ О компании</h2>
             <p id="company-text"><strong>Zonlik Fabric</strong> — независимая разработка инструментов для системного администрирования и мониторинга. Мы создаём лёгкие, быстрые и информативные программы для Linux, помогая пользователям старых и слабых ПК.</p>
         </div>
 
-        <div class="products fade-in" style="display: flex; justify-content: center;">
+        <div class="products" style="display: flex; justify-content: center;">
             <div class="product-card" onclick="showProduct()">
                 <div style="font-size: 48px;">📊</div>
                 <h3>Zonlik Monitor</h3>
@@ -379,7 +313,7 @@
             </div>
         </div>
 
-        <div class="screenshots-section fade-in">
+        <div class="screenshots-section">
             <h2>📸 Скриншоты программы</h2>
             <div class="screenshots-grid">
                 <div class="screenshot-item">
@@ -401,7 +335,7 @@
             </div>
         </div>
 
-        <div class="updates-section fade-in">
+        <div class="updates-section">
             <h2>📋 История обновлений</h2>
             <div class="update-item"><span class="update-version">v1.44</span> — Добавлен мониторинг USB, диагностика флешек</div>
             <div class="update-item"><span class="update-version">v1.43</span> — Исправлена ошибка графиков, оптимизация</div>
@@ -410,14 +344,14 @@
             <div class="update-item"><span class="update-version">v1.40</span> — Первый релиз</div>
         </div>
 
-        <div class="faq-section fade-in">
+        <div class="faq-section">
             <h2>❓ Часто задаваемые вопросы</h2>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Программа не запускается</div><div class="faq-answer">Установите Python 3.8+ и psutil: <code>pip install psutil</code></div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ GPU показывает --%</div><div class="faq-answer">Установите nvidia-driver-390 для полной поддержки.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Как добавить в автозапуск?</div><div class="faq-answer">В настройках программы поставьте галочку "Автозапуск".</div></div>
         </div>
 
-        <div class="install-steps fade-in">
+        <div class="install-steps">
             <h2>📥 Установка</h2>
             <ol>
                 <li>Скачайте ZIP-архив или скрипт</li>
@@ -427,22 +361,17 @@
             </ol>
         </div>
 
-        <div class="code fade-in">
+        <div class="code">
             <strong>🚀 Быстрый запуск (curl):</strong><br>
             <code id="curl-cmd">python3 &lt;(curl -s https://zonlik.github.io/Zonlik-Fabric-Site/zonlik_monitor_full.py)</code>
             <button class="copy-btn" onclick="copyText(document.getElementById('curl-cmd').innerText)">📋 Копировать</button>
         </div>
 
-        <div class="qr-code fade-in">
-            <canvas id="qrcode"></canvas>
-            <p>📱 Сканируй для быстрого доступа</p>
-        </div>
-
-        <div class="search-box fade-in">
+        <div class="search-box">
             <input type="text" id="searchInput" placeholder="🔍 Поиск по странице..." onkeyup="searchPage()">
         </div>
 
-        <div class="share-buttons fade-in">
+        <div class="share-buttons">
             <a href="https://t.me/share/url?url=https://zonlik.github.io/Zonlik-Fabric-Site/&text=Zonlik%20Monitor%20-%20системный%20монитор%20для%20Linux" target="_blank" class="share-btn">📨 Telegram</a>
             <a href="https://vk.com/share.php?url=https://zonlik.github.io/Zonlik-Fabric-Site/" target="_blank" class="share-btn">📘 VK</a>
             <a href="https://twitter.com/intent/tweet?text=Zonlik%20Monitor%20-%20системный%20монитор%20для%20Linux&url=https://zonlik.github.io/Zonlik-Fabric-Site/" target="_blank" class="share-btn">🐦 Twitter</a>
@@ -459,26 +388,7 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script>
-        // Плавное появление
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, appearOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader);
-
-        // Кнопка наверх
-        window.addEventListener('scroll', () => {
-            const btn = document.querySelector('.scroll-top');
-            if (window.scrollY > 300) btn.style.display = 'flex';
-            else btn.style.display = 'none';
-        });
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
         // Счётчик скачиваний
         fetch('https://api.github.com/repos/Zonlik/Zonlik-Fabric-Site/releases')
             .then(res => res.json())
@@ -490,45 +400,11 @@
                 document.getElementById('download-counter').innerHTML = `📥 Загрузок: ${downloads}+`;
             }).catch(() => document.getElementById('download-counter').innerHTML = '📥 Загрузок: 100+');
 
-        // Версия из GitHub
-        fetch('https://api.github.com/repos/Zonlik/Zonlik-Fabric-Site/releases/latest')
-            .then(res => res.json())
-            .then(data => {
-                if (data.tag_name) {
-                    document.getElementById('version-badge').innerHTML = `📦 ${data.tag_name}`;
-                }
-            }).catch(() => {});
-
-        // QR-код
-        new QRCode(document.getElementById('qrcode'), {
-            text: 'https://zonlik.github.io/Zonlik-Fabric-Site/',
-            width: 128,
-            height: 128
-        });
-
-        // Темы
-        function setTheme(theme) {
-            document.body.classList.remove('light', 'blue', 'green');
-            if (theme === 'light') document.body.classList.add('light');
-            else if (theme === 'blue') document.body.style.background = 'linear-gradient(135deg, #0a1a2a 0%, #0a1a3a 100%)';
-            else if (theme === 'green') document.body.style.background = 'linear-gradient(135deg, #0a1a0a 0%, #0a2a0a 100%)';
-            else if (theme === 'dark') document.body.style.background = 'linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 100%)';
-            localStorage.setItem('site_theme', theme);
-        }
-        function toggleTheme() {
-            if (document.body.classList.contains('light')) setTheme('dark');
-            else setTheme('light');
-        }
-        const savedTheme = localStorage.getItem('site_theme');
-        if (savedTheme && savedTheme !== 'dark') setTheme(savedTheme);
-
-        // Копирование
         function copyText(text) {
             navigator.clipboard.writeText(text);
             alert('Скопировано: ' + text);
         }
 
-        // Поиск
         function searchPage() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let elements = document.querySelectorAll('p, h2, h3, .feature, .faq-question, .update-item');
@@ -546,15 +422,23 @@
             let answer = el.nextElementSibling;
             answer.classList.toggle('show');
         }
+
         function showProduct() {
             document.getElementById('product-detail').classList.add('active');
             document.getElementById('product-detail').scrollIntoView({ behavior: 'smooth' });
         }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+            localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+        }
+
         function toggleLang() {
             let isEn = localStorage.getItem('lang') === 'en';
             localStorage.setItem('lang', isEn ? 'ru' : 'en');
             updateLanguage();
         }
+
         function updateLanguage() {
             const isEn = localStorage.getItem('lang') === 'en';
             document.querySelector('.subtitle').innerHTML = isEn ? 'System administration tools' : 'Инструменты для системного администрирования';
@@ -562,6 +446,7 @@
             document.getElementById('company-text').innerHTML = isEn 
                 ? '<strong>Zonlik Fabric</strong> — independent development of system administration and monitoring tools for Linux.'
                 : '<strong>Zonlik Fabric</strong> — независимая разработка инструментов для системного администрирования и мониторинга для Linux.';
+            
             const features = document.querySelectorAll('.feature');
             if (isEn) {
                 features[0].innerHTML = '📊 Monitoring: CPU, RAM, GPU, disks, network';
@@ -579,7 +464,9 @@
                 features[5].innerHTML = '🎮 Видеокарта: nvidia-smi, память, температура';
             }
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
             updateLanguage();
             setTimeout(showProduct, 300);
         });
