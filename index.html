@@ -21,7 +21,9 @@
             background: linear-gradient(135deg, #f0f0f5 0%, #e0e0e8 100%);
             color: #1a1a2a;
         }
-        body.light .badge, body.light .feature, body.light .company-section, body.light .product-card, body.light .product-detail {
+        body.light .badge, body.light .feature, body.light .company-section, 
+        body.light .product-card, body.light .product-detail, body.light .screenshots-section,
+        body.light .updates-section, body.light .faq-section {
             background: rgba(240, 240, 245, 0.9);
             border-color: #bb86fc;
         }
@@ -44,11 +46,6 @@
             50% { text-shadow: 0 0 20px #bb86fc, 0 0 30px #03dac6; }
             100% { text-shadow: 0 0 5px #bb86fc; }
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
         .header {
             text-align: center;
             border-bottom: 2px solid rgba(187, 134, 252, 0.3);
@@ -59,13 +56,27 @@
         .icon img {
             width: 96px;
             height: 96px;
-            animation: float 3s ease-in-out infinite;
         }
         h1 {
             color: #bb86fc;
             font-size: 48px;
             margin: 15px 0 10px;
             animation: glow 3s ease-in-out infinite;
+        }
+        .badge-container {
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(26, 26, 42, 0.8);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid rgba(187, 134, 252, 0.3);
         }
         .theme-switch, .lang-switch {
             position: fixed;
@@ -80,45 +91,20 @@
             transition: all 0.3s ease;
             z-index: 100;
         }
-        .lang-switch {
-            right: 120px;
-        }
+        .lang-switch { right: 120px; }
         .theme-switch:hover, .lang-switch:hover {
             background: rgba(187, 134, 252, 0.2);
             transform: scale(1.05);
         }
-        .badge {
-            display: inline-block;
-            background: rgba(26, 26, 42, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin: 5px;
-            border: 1px solid rgba(187, 134, 252, 0.3);
-        }
-        .company-section, .faq-section, .updates-section {
+        .company-section, .screenshots-section, .updates-section, .faq-section {
             background: rgba(26, 26, 42, 0.6);
             backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 20px;
             margin: 30px 0;
             border: 1px solid rgba(187, 134, 252, 0.2);
-            transition: all 0.3s ease;
         }
-        .company-section:hover, .faq-section:hover, .updates-section:hover {
-            border-color: rgba(187, 134, 252, 0.5);
-            box-shadow: 0 0 30px rgba(187, 134, 252, 0.1);
-        }
-        h2 {
-            color: #bb86fc;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-        h3 {
-            color: #03dac6;
-            margin: 20px 0 10px;
-        }
+        h2 { color: #bb86fc; margin-bottom: 20px; font-size: 28px; }
         .product-card {
             background: linear-gradient(135deg, #1a1a2a 0%, #1a1a2a 100%);
             border: 1px solid rgba(187, 134, 252, 0.2);
@@ -127,7 +113,7 @@
             width: 300px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s;
             margin: 0 auto;
         }
         .product-card:hover {
@@ -144,9 +130,7 @@
             border: 1px solid rgba(187, 134, 252, 0.2);
             animation: fadeInUp 0.6s ease;
         }
-        .product-detail.active {
-            display: block;
-        }
+        .product-detail.active { display: block; }
         .features-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -159,45 +143,47 @@
             border-radius: 12px;
             border-left: 3px solid #bb86fc;
         }
-        .faq-item {
-            margin: 15px 0;
-            border-bottom: 1px solid rgba(187, 134, 252, 0.2);
-            padding-bottom: 10px;
+        .screenshots-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
-        .faq-question {
-            cursor: pointer;
-            font-weight: bold;
-            color: #03dac6;
-            transition: color 0.3s;
-        }
-        .faq-question:hover {
-            color: #bb86fc;
-        }
-        .faq-answer {
-            display: none;
-            padding-top: 10px;
-            padding-left: 20px;
-            color: #aaa;
-        }
-        .faq-answer.show {
-            display: block;
-        }
-        .update-item {
-            padding: 10px;
-            border-left: 3px solid #bb86fc;
-            margin: 10px 0;
-            background: rgba(10, 10, 15, 0.4);
-        }
-        .update-version {
-            color: #03dac6;
-            font-weight: bold;
-        }
-        .download-counter {
+        .screenshot-item {
             text-align: center;
-            font-size: 24px;
-            margin: 20px 0;
-            color: #bb86fc;
+            width: 250px;
         }
+        .screenshot-item img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #bb86fc;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .screenshot-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.5);
+        }
+        .install-steps {
+            background: rgba(10, 10, 15, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .install-steps ol {
+            margin-left: 25px;
+        }
+        .copy-btn {
+            background: #bb86fc;
+            color: #0a0a0f;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+        .copy-btn:hover { background: #03dac6; }
         .btn {
             background: linear-gradient(135deg, #bb86fc 0%, #9b6fe0 100%);
             color: #0a0a0f;
@@ -207,9 +193,7 @@
             border-radius: 30px;
             display: inline-block;
             margin: 10px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            transition: 0.3s;
         }
         .btn:hover {
             transform: translateY(-3px);
@@ -223,6 +207,34 @@
             overflow-x: auto;
             margin: 15px 0;
         }
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .share-btn {
+            background: rgba(26, 26, 42, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .share-btn:hover { background: #bb86fc; color: #0a0a0f; }
+        .search-box {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-box input {
+            width: 300px;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #bb86fc;
+            background: rgba(10, 10, 15, 0.8);
+            color: #e0e0e0;
+            font-family: monospace;
+        }
         footer {
             text-align: center;
             margin-top: 50px;
@@ -232,9 +244,12 @@
         }
         a { color: #03dac6; text-decoration: none; }
         a:hover { color: #bb86fc; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1a1a2a; }
-        ::-webkit-scrollbar-thumb { background: #bb86fc; border-radius: 4px; }
+        @media (max-width: 768px) {
+            .theme-switch, .lang-switch { top: 10px; right: 10px; padding: 4px 10px; font-size: 12px; }
+            .lang-switch { right: 80px; }
+            h1 { font-size: 32px; }
+            .container { padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -246,17 +261,20 @@
             <div class="icon"><img src="icon.png" alt="Zonlik Fabric"></div>
             <h1>ZONLIK FABRIC</h1>
             <div class="subtitle">Инструменты для системного администрирования</div>
-            <div style="margin-top: 15px;">
+            <div class="badge-container">
                 <span class="badge">🔧 Open Source</span>
                 <span class="badge">🐧 Linux</span>
                 <span class="badge">⚡ Оптимизация</span>
                 <span class="badge">🔒 Безопасно</span>
+                <span class="badge">📦 v1.44</span>
+                <span class="badge">📄 MIT</span>
+                <span class="badge">⭐ GitHub</span>
             </div>
         </div>
 
         <div class="company-section" id="company">
             <h2 id="company-title">✨ О компании</h2>
-            <p id="company-text"><strong>Zonlik Fabric</strong> — это независимая разработка инструментов для системного администрирования и мониторинга. Мы создаём лёгкие, быстрые и информативные программы для Linux, которые помогают пользователям старых и слабых ПК.</p>
+            <p id="company-text"><strong>Zonlik Fabric</strong> — независимая разработка инструментов для системного администрирования и мониторинга. Мы создаём лёгкие, быстрые и информативные программы для Linux, помогая пользователям старых и слабых ПК.</p>
         </div>
 
         <div class="products" style="display: flex; justify-content: center;">
@@ -269,8 +287,8 @@
 
         <div id="product-detail" class="product-detail">
             <h2>📊 Zonlik Monitor</h2>
-            <div class="version">Версия 1.44 | Платформа: Linux | Лицензия: Open Source</div>
-            <p>Лёгкий и быстрый системный монитор, созданный специально для старых ноутбуков и слабых ПК.</p>
+            <div class="version">Версия 1.44 | Платформа: Linux | Лицензия: MIT</div>
+            <p>Лёгкий и быстрый системный монитор для старых ноутбуков и слабых ПК.</p>
             <div class="features-list">
                 <div class="feature">📊 Мониторинг CPU, RAM, GPU, диски, сеть</div>
                 <div class="feature">🔄 Список процессов, убийство, топ-5 жирных</div>
@@ -283,11 +301,29 @@
                 <a href="Zonlik-Fabric.zip" class="btn">📥 Скачать ZIP</a>
                 <a href="zonlik_monitor_full.py" class="btn">📄 Скачать скрипт</a>
             </div>
-            <div class="code"><strong>🚀 Быстрый запуск:</strong><br><code>cd Zonlik-Fabric && python3 zonlik_monitor_full.py</code></div>
-            <div class="code"><strong>🌐 Запуск через curl:</strong><br><code>python3 &lt;(curl -s https://zonlik.github.io/Zonlik-Fabric-Site/zonlik_monitor_full.py)</code></div>
         </div>
 
-        <div class="download-counter" id="counter">📥 Загрузок: ...</div>
+        <div class="screenshots-section">
+            <h2>📸 Скриншоты программы</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <a href="screenshots/cpu.png" target="_blank"><img src="screenshots/cpu.png" alt="Процессор"></a>
+                    <p>Процессор</p>
+                </div>
+                <div class="screenshot-item">
+                    <a href="screenshots/usb.png" target="_blank"><img src="screenshots/usb.png" alt="USB"></a>
+                    <p>USB и флешки</p>
+                </div>
+                <div class="screenshot-item">
+                    <a href="screenshots/help.png" target="_blank"><img src="screenshots/help.png" alt="Помощь"></a>
+                    <p>Помощь</p>
+                </div>
+                <div class="screenshot-item">
+                    <a href="screenshots/settings.png" target="_blank"><img src="screenshots/settings.png" alt="Настройки"></a>
+                    <p>Настройки</p>
+                </div>
+            </div>
+        </div>
 
         <div class="updates-section">
             <h2>📋 История обновлений</h2>
@@ -300,11 +336,36 @@
 
         <div class="faq-section">
             <h2>❓ Часто задаваемые вопросы</h2>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Программа не запускается</div><div class="faq-answer">Установите Python 3.8+ и библиотеку psutil: <code>pip install psutil</code></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ GPU показывает --%</div><div class="faq-answer">У вас драйвер nouveau. Установите nvidia-driver-390 для полной поддержки.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Как добавить в автозапуск?</div><div class="faq-answer">В настройках программы поставьте галочку "Автозапуск при старте системы".</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Графики дисков и сети пустые</div><div class="faq-answer">Подождите 30-60 секунд — данные накапливаются.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Как очистить кэш?</div><div class="faq-answer">Нажмите кнопку "Очистить кэш" на вкладке "Мониторинг".</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Программа не запускается</div><div class="faq-answer">Установите Python 3.8+ и psutil: <code>pip install psutil</code></div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ GPU показывает --%</div><div class="faq-answer">Установите nvidia-driver-390 для полной поддержки.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)">❓ Как добавить в автозапуск?</div><div class="faq-answer">В настройках программы поставьте галочку "Автозапуск".</div></div>
+        </div>
+
+        <div class="install-steps">
+            <h2>📥 Установка</h2>
+            <ol>
+                <li>Скачайте ZIP-архив или скрипт</li>
+                <li>Распакуйте архив <button class="copy-btn" onclick="copyText('unzip Zonlik-Fabric.zip')">📋 Копировать</button></li>
+                <li>Установите зависимости: <code>pip install psutil</code> <button class="copy-btn" onclick="copyText('pip install psutil')">📋</button></li>
+                <li>Запустите: <code>python3 zonlik_monitor_full.py</code> <button class="copy-btn" onclick="copyText('python3 zonlik_monitor_full.py')">📋</button></li>
+            </ol>
+        </div>
+
+        <div class="code">
+            <strong>🚀 Быстрый запуск (curl):</strong><br>
+            <code id="curl-cmd">python3 &lt;(curl -s https://zonlik.github.io/Zonlik-Fabric-Site/zonlik_monitor_full.py)</code>
+            <button class="copy-btn" onclick="copyText(document.getElementById('curl-cmd').innerText)">📋 Копировать</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Поиск по странице..." onkeyup="searchPage()">
+        </div>
+
+        <div class="share-buttons">
+            <a href="https://t.me/share/url?url=https://zonlik.github.io/Zonlik-Fabric-Site/&text=Zonlik%20Monitor%20-%20системный%20монитор%20для%20Linux" target="_blank" class="share-btn">📨 Telegram</a>
+            <a href="https://vk.com/share.php?url=https://zonlik.github.io/Zonlik-Fabric-Site/" target="_blank" class="share-btn">📘 VK</a>
+            <a href="https://twitter.com/intent/tweet?text=Zonlik%20Monitor%20-%20системный%20монитор%20для%20Linux&url=https://zonlik.github.io/Zonlik-Fabric-Site/" target="_blank" class="share-btn">🐦 Twitter</a>
+            <a href="https://github.com/Zonlik/Zonlik-Fabric-Site" target="_blank" class="share-btn">⭐ GitHub</a>
         </div>
 
         <div style="text-align: center; margin: 20px;">
@@ -313,7 +374,7 @@
 
         <footer>
             🛠️ Разработчик: Баринов Кирилл Сергеевич (Zonlik)<br>
-            📄 Open Source | Свободно для скачивания
+            📄 Open Source | MIT License | v1.44
         </footer>
     </div>
 
@@ -332,30 +393,35 @@
         }
         function toggleLang() {
             let isEn = localStorage.getItem('lang') === 'en';
-            if (isEn) {
-                localStorage.setItem('lang', 'ru');
-                location.reload();
-            } else {
-                localStorage.setItem('lang', 'en');
-                location.reload();
-            }
+            localStorage.setItem('lang', isEn ? 'ru' : 'en');
+            updateLanguage();
         }
-        function updateCounter() {
-            fetch('https://api.github.com/repos/Zonlik/Zonlik-Fabric-Site/releases')
-                .then(res => res.json())
-                .then(data => {
-                    let count = 0;
-                    if (data && data[0] && data[0].assets) {
-                        count = data[0].assets.reduce((a,b) => a + (b.download_count || 0), 0);
-                    }
-                    document.getElementById('counter').innerHTML = `📥 Загрузок: ${count}+`;
-                }).catch(() => {
-                    document.getElementById('counter').innerHTML = '📥 Загрузок: 1000+';
-                });
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert('Скопировано: ' + text);
+        }
+        function searchPage() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let elements = document.querySelectorAll('p, h2, h3, .feature, .faq-question, .update-item');
+            elements.forEach(el => {
+                let text = el.innerText.toLowerCase();
+                if (text.includes(input) && input !== '') {
+                    el.style.backgroundColor = 'rgba(187, 134, 252, 0.3)';
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => el.style.backgroundColor = '', 2000);
+                }
+            });
+        }
+        function updateLanguage() {
+            const isEn = localStorage.getItem('lang') === 'en';
+            document.getElementById('company-title').innerHTML = isEn ? '✨ About Company' : '✨ О компании';
+            document.getElementById('company-text').innerHTML = isEn 
+                ? '<strong>Zonlik Fabric</strong> — independent development of system administration and monitoring tools for Linux.'
+                : '<strong>Zonlik Fabric</strong> — независимая разработка инструментов для системного администрирования и мониторинга для Linux.';
         }
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
-            updateCounter();
+            updateLanguage();
             setTimeout(showProduct, 300);
         });
     </script>
